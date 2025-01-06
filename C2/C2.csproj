@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="9.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LaverieEntities">
+      <HintPath>..\..\..\Laverie-repos-master\Laverie-repos-master\LaverieEntities\bin\Debug\net8.0\LaverieEntities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

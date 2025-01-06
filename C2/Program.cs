@@ -22,6 +22,8 @@ builder.Services.AddScoped<IMachineDAO, MachineDAOImpl>();
 builder.Services.AddScoped<ICycleDAO, CycleDAOImpl>();
 
 // Add and configure CORS
+
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins", policy =>

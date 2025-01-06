@@ -71,27 +71,22 @@ namespace C2.Controllers
         }
 
         // PUT: /cycles
-        [HttpPut]
-        public IActionResult Update([FromBody] Cycle cycle)
+        [HttpPut("{idCycle}")]
+        public IActionResult Update(int idCycle, [FromBody] Cycle cycle)
         {
-            if (cycle == null)
+            if (cycle == null || cycle.IdCycle != idCycle)
             {
-                return BadRequest("Cycle cannot be null.");
+                return BadRequest("Cycle data is invalid.");
             }
-            try
+
+            var existingCycle = _daoCycle.GetCycleById(cycle.IdCycle);
+            if (existingCycle == null)
             {
-                var existingCycle = _daoCycle.GetCycleById(cycle.IdCycle);
-                if (existingCycle == null)
-                {
-                    return NotFound();
-                }
-                _daoCycle.UpdateCycle(cycle);
-                return NoContent();
+                return NotFound();
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+
+            _daoCycle.UpdateCycle(cycle);
+            return NoContent();
         }
 
         // DELETE: /cycles/{id}

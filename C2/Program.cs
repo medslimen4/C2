@@ -1,4 +1,3 @@
-
 using C2.Infrastructure.Connexions;
 using C2.Infrastructure.DAO;
 using C2.Domain.IDAO;
@@ -22,7 +21,16 @@ builder.Services.AddScoped<ILaveriesDAO, LaveriesDAOImpl>();
 builder.Services.AddScoped<IMachineDAO, MachineDAOImpl>();
 builder.Services.AddScoped<ICycleDAO, CycleDAOImpl>();
 
-
+// Add and configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
@@ -34,6 +42,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Apply the CORS policy
+app.UseCors("AllowAllOrigins"); // Apply the "AllowAllOrigins" policy
+
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

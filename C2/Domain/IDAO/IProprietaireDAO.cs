@@ -5,7 +5,7 @@ namespace C2.Domain.IDAO
 {
     public interface IProprietaireDAO
     {
-        List<Proprietaire> GetAllProprietaires();
+        List<CreateProprietaireDTO> GetAllProprietaires();
         Proprietaire GetProprietaireById(int cin);
         void CreateProprietaire(CreateProprietaireDTO proprietaire);
         void UpdateProprietaire(Proprietaire proprietaire);

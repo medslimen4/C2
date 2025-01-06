@@ -15,9 +15,9 @@ namespace C2.Infrastructure.DAO
             _connection = connectionDB.GetConnection();
         }
 
-        public List<Proprietaire> GetAllProprietaires()
+        public List<CreateProprietaireDTO> GetAllProprietaires()
         {
-            List<Proprietaire> proprietaires = new List<Proprietaire>();
+            List<CreateProprietaireDTO> proprietaires = new List<CreateProprietaireDTO>();
 
             try
             {
@@ -28,12 +28,12 @@ namespace C2.Infrastructure.DAO
                 {
                     while (reader.Read())
                     {
-                        var proprietaire = new Proprietaire
+                        var CreateProprietaireDTO = new CreateProprietaireDTO
                         {
                             _CIN = reader.GetInt32("_CIN"),
                             _Surname = reader.GetString("_Surname")
                         };
-                        proprietaires.Add(proprietaire);
+                        proprietaires.Add(CreateProprietaireDTO);
                     }
                 }
             }

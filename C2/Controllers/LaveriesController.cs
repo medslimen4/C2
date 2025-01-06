@@ -72,31 +72,31 @@ namespace C2.Controllers
             }
 
             // PUT: /laveries
-            [HttpPut]
-            public IActionResult Update([FromBody] CreateLaverieDTO laverie)
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody] CreateLaverieDTO laverie)
+        {
+            if (laverie == null)
             {
-                if (laverie == null)
-                {
-                    return BadRequest("Laverie cannot be null.");
-                }
-                try
-                {
-                    var existingLaverie = _daoLaveries.GetLaverieById(laverie.IdLaverie);
-                    if (existingLaverie == null)
-                    {
-                        return NotFound();
-                    }
-                    _daoLaveries.UpdateLaverie(laverie);
-                    return NoContent();
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, $"Internal server error: {ex.Message}");
-                }
+                return BadRequest("Laverie cannot be null.");
             }
+            try
+            {
+                var existingLaverie = _daoLaveries.GetLaverieById(id); // Use the ID from the URL
+                if (existingLaverie == null)
+                {
+                    return NotFound();
+                }
+                _daoLaveries.UpdateLaverie(laverie);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
 
-            // DELETE: /laveries/{id}
-            [HttpDelete("{id}")]
+        // DELETE: /laveries/{id}
+        [HttpDelete("{id}")]
             public IActionResult Delete(int id)
             {
                 try

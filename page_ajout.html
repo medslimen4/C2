@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestion Laverie - Administration</title>
+    <style>
+        .container { padding: 20px; }
+        .form-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        .form-group { margin: 10px 0; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        .crud-buttons button { margin: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Administration Laverie</h1>
+        <a href="page_status.html">Voir État et Tarifs</a>
+
+        <!-- CRUD Propriétaire -->
+        <div class="form-section">
+            <h2>Gestion des Propriétaires</h2>
+            <div class="form-group">
+                <input type="number" id="cin" placeholder="CIN">
+                <input type="text" id="surname" placeholder="Nom">
+                <div class="crud-buttons">
+                    <button onclick="createProprietaire()">Créer</button>
+                    <button onclick="updateProprietaire()">Modifier</button>
+                    <button onclick="deleteProprietaire()">Supprimer</button>
+                </div>
+            </div>
+            <div id="proprietairesList"></div>
+        </div>
+
+        <!-- CRUD Laverie -->
+        <div class="form-section">
+            <h2>Gestion des Laveries</h2>
+            <div class="form-group">
+                <input type="text" id="capacite" placeholder="Capacité">
+                <input type="text" id="adresse" placeholder="Adresse">
+                <input type="number" id="proprietaireCIN" placeholder="CIN Propriétaire">
+                <div class="crud-buttons">
+                    <button onclick="createLaverie()">Créer</button>
+                    <button onclick="updateLaverie()">Modifier</button>
+                    <button onclick="deleteLaverie()">Supprimer</button>
+                </div>
+            </div>
+            <div id="laveriesList"></div>
+        </div>
+
+        <!-- CRUD Machine -->
+        <div class="form-section">
+            <h2>Gestion des Machines</h2>
+            <div class="form-group">
+                <input type="text" id="marqueMachine" placeholder="Marque">
+                <input type="number" id="idLaverie" placeholder="ID Laverie">
+                <div class="crud-buttons">
+                    <button onclick="createMachine()">Créer</button>
+                    <button onclick="updateMachine()">Modifier</button>
+                    <button onclick="deleteMachine()">Supprimer</button>
+                </div>
+            </div>
+            <div id="machinesList"></div>
+        </div>
+
+        <!-- CRUD Cycle -->
+        <div class="form-section">
+            <h2>Gestion des Cycles</h2>
+            <div class="form-group">
+                <input type="text" id="nomCycle" placeholder="Nom du cycle">
+                <input type="number" id="dureeCycle" placeholder="Durée (HR)">
+                <input type="number" id="coutCycle" placeholder="Coût">
+                <input type="number" id="idMachine" placeholder="ID Machine">
+                <div class="crud-buttons">
+                    <button onclick="createCycle()">Créer</button>
+                    <button onclick="updateCycle()">Modifier</button>
+                    <button onclick="deleteCycle()">Supprimer</button>
+                </div>
+            </div>
+            <div id="cyclesList"></div>
+        </div>
+    </div>
+
+    <script src="crud.js"></script>
+</body>
+</html>
